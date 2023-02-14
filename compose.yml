@@ -1,0 +1,19 @@
+services:
+
+  omejdn-server:
+    image: ghcr.io/fraunhofer-aisec/omejdn-server:${OMEJDN_VERSION}
+    restart: unless-stopped
+    ports:
+      - 4567:4567
+    environment:
+      - OMEJDN_ISSUER=${OMEJDN_ISSUER}
+      - OMEJDN_FRONT_URL=${OMEJDN_ISSUER}
+      - OMEJDN_OPENID=true
+      - OMEJDN_ENVIRONMENT=${OMEJDN_ENVIRONMENT}
+      - OMEJDN_ACCEPT_AUDIENCE=idsc:IDS_CONNECTORS_ALL
+      - OMEJDN_DEFAULT_AUDIENCE=idsc:IDS_CONNECTORS_ALL
+      - OMEJDN_ADMIN=${ADMIN_USERNAME}:${ADMIN_PASSWORD}
+      - OMEJDN_PLUGINS=/opt/config/plugins.yml
+    volumes:
+      - ./config:/opt/config
+      - ./keys:/opt/keys
