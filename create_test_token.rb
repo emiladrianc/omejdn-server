@@ -35,8 +35,7 @@ payload = {
   'exp' => Time.new.to_i + 3600,
   'nbf' => Time.new.to_i,
   'iat' => Time.new.to_i,
-  'aud' => 'idsc:IDS_CONNECTORS_ALL',
-  'scope' => ['omejdn:read', 'omejdn:write', 'omejdn:admin', 'email', 'profile', 'openid']
+  'aud' => 'http://localhost:4567'
 }
 token = JWT.encode payload, key, 'RS256'
 puts token
